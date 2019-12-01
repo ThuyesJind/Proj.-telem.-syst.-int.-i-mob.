@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { log } from 'util';
 
 
 export default class PacjentLogowanie extends Component {
@@ -30,7 +31,9 @@ export default class PacjentLogowanie extends Component {
         this.state.pacjentData.forEach ((pacjent) => {
             if(pacjent.firstname === this.state.firstname && pacjent.lastname === this.state.lastname)
             {
-            console.log("git")
+            localStorage.setItem('id', pacjent.id);
+            console.log(localStorage.getItem('id'));
+            
             this.props.onCzyZalogowanyChange(true);
             this.props.history.push('/');
             }

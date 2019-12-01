@@ -10,6 +10,7 @@ import DodawanieWizyty from './DodawanieWizyty';
 import Grafik from './Grafik'
 import StomatologLogowanie from './Stomatologlogowanie';
 import GrafikPacjent from './GrafikPacjent';
+import Home from './Home';
 
 export default class App extends Component {
   state = {
@@ -47,6 +48,7 @@ export default class App extends Component {
             <div className="container-fluid" id="main-container" >
               <Route exact path ="/pacjent" component={PacjentForm} />
               <Route exact path ="/stomatolog" component={StomatologForm} />
+              <Route exact path ="/" component={Home} />
               <Route exact path ="/pacjentlogowanie" render={
                 (props) => <PacjentLogowanie
                   {...props}
