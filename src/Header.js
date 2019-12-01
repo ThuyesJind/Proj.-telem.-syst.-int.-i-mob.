@@ -8,6 +8,7 @@ export default class Header extends Component {
         console.log('powinno wylogowac')
         localStorage.clear();
         this.props.onCzyZalogowanyChange(false);
+        this.props.onCzyStomatologChange(false);
         window.location.reload();
         window.location.href = "/";
         
@@ -29,41 +30,65 @@ export default class Header extends Component {
                             <li className="nav-item active">
                                 <Link className="nav-link" to="/">Home</Link>
                             </li>
-                            <ul className="navbar-nav">
+                            {this.props.czyZalogowany && this.props.czyStomatolog ?
+                                <ul className="navbar-nav">
+                                    <li className="nav-item">
+                                    <Link className="nav-link" to="/stomatolog">Dodawanie Stomatologa</Link>
+                                </li>
                                 <li className="nav-item">
-                                <Link className="nav-link" to="/pacjent">Dodawanie pacjenta</Link>
-                            </li>
-                            </ul>
-                            <ul className="navbar-nav">
+                                    <Link className="nav-link" to="/usuwaniepacjenta">Usuwanie Pacjenta</Link>
+                                </li>
                                 <li className="nav-item">
-                                <Link className="nav-link" to="/stomatolog">Dodawanie Stomatologa</Link>
-                            </li>
-                            </ul>
-                            </ul>
-                            <ul className="navbar-nav">
+                                    <Link className="nav-link" to="/usuwaniestomatologa">Usuwanie Stomatologa</Link>
+                                </li>
                                 <li className="nav-item">
-                                <Link className="nav-link" to="/pacjentlogowanie">Logowanie Pacjenta</Link>
-                            </li>
-                            </ul>
-                            <ul className="navbar-nav">
+                                    <Link className="nav-link" to="/grafik">Grafik</Link>
+                                </li>
                                 <li className="nav-item">
-                                <Link className="nav-link" to="/stomatologlogowanie">Logowanie Stomatolog</Link>
-                            </li>
-                            </ul>
-                            <ul className="navbar-nav">
-                                <li className="nav-item">
-                                <Link className="nav-link" to="/usuwaniepacjenta">Usuwanie Pacjenta</Link>
-                            </li>
-                            </ul>
-                            <ul className="navbar-nav">
-                                <li className="nav-item">
-                                <Link className="nav-link" to="/usuwaniestomatologa">Usuwanie Stomatologa</Link>
-                            </li>
-                            </ul>
-                            <ul className="navbar-nav">
+                                        <Link className="nav-link" onClick={this.wylogujUzytkownika} >Wyloguj</Link>
+                                    </li>
+                                </ul>
+                            :
+                                null
+                            }   
+                            {this.props.czyZalogowany && !this.props.czyStomatolog ?
+                                <ul className="navbar-nav">
                                 <li className="nav-item">
                                 <Link className="nav-link" to="/dodawaniewizyty">Dodawanie Wizyty</Link>
-                            </li>
+                                </li>
+                                
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/grafik">Grafik Lekarzy</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/grafikpacjent">Umówione Wizyty</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" onClick={this.wylogujUzytkownika} >Wyloguj</Link>
+                                </li>
+                                </ul>
+                            :
+                            null
+                             }   
+                             {!this.props.czyZalogowany && !this.props.czyStomatolog ?
+                                <ul className="navbar-nav">
+
+                                <li className="nav-item">
+                                <Link className="nav-link" to="/pacjent">Rejestracja pacjenta</Link>
+                                </li>
+                                <li className="nav-item dropdown">
+                                            <Link className="nav-link dropdown-toggle" onClick={this.testuje} href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Zaloguj
+                                            </Link>
+                                        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <Link className="dropdown-item" to="/pacjentlogowanie">Logowanie Pacjent</Link>
+                                            <Link className="dropdown-item" to="/stomatologlogowanie">Logowanie Stomatolog</Link> 
+                                            </div>       
+                                        </li>
+                                        </ul>
+                            :
+                            null
+                            }
                             </ul>
                     </div>
                 </nav>
@@ -75,5 +100,6 @@ export default class Header extends Component {
 Header.propTypes = {
     czyZalogowany: PropTypes.bool,
     onCzyZalogowanyChange: PropTypes.func,
-    czyWeterynarz: PropTypes.bool
+    czyStomatolog: PropTypes.bool,
+    onCzyStomatologChange: PropTypes.func
 }

@@ -27,7 +27,7 @@ export default class KlientForm extends Component {
     render() {
         return (
             <div className="container" style={{ marginTop: '50px', width: '700px'}}>
-            <h2 style={{marginBottom: '40px'}}>Dodawanie Pacjenta</h2>
+            <h2 style={{marginBottom: '40px'}}>Rejestracja Pacjenta</h2>
                 <form onSubmit={this.handleSubmit}>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Imię</label>

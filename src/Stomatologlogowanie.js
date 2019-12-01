@@ -30,8 +30,15 @@ export default class StomatologLogowanie extends Component {
         e.preventDefault();
         this.state.stomatologData.forEach ((stomatolog) => {
             if(stomatolog.firstname === this.state.firstname && stomatolog.lastname === this.state.lastname)
-            this.props.history.push('/');
-        console.log(this.props)
+            {
+                this.props.onCzyStomatologChange(true);
+                this.props.onCzyZalogowanyChange(true);
+                this.props.history.push('/');
+            }
+            else
+            {
+                console.log("nie znaleziono")
+            }
         })
     }
 
@@ -71,3 +78,6 @@ export default class StomatologLogowanie extends Component {
     }
 }
 
+StomatologLogowanie.propTypes ={
+    onCzyZalogowanyChange: PropTypes.func
+}

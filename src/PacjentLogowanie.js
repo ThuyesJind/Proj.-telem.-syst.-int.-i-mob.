@@ -27,12 +27,17 @@ export default class PacjentLogowanie extends Component {
             })
         }
     handleSubmit = (e) => {
-        e.preventDefault();
-
         this.state.pacjentData.forEach ((pacjent) => {
             if(pacjent.firstname === this.state.firstname && pacjent.lastname === this.state.lastname)
+            {
+            console.log("git")
+            this.props.onCzyZalogowanyChange(true);
             this.props.history.push('/');
-        console.log(this.props)
+            }
+            else
+            {
+                console.log("nie znaleziono")
+            }
         })
     }
 

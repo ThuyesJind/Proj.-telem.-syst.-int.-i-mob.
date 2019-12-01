@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default class DodawanieWizyty extends Component {
     state = {
-        data: new Date(),
+        date: new Date(),
         idKlienta: "",
         idStomatologa: "",
         idZabiegu: "",
@@ -15,6 +15,7 @@ export default class DodawanieWizyty extends Component {
         zabiegData: []
 
     }
+    
     componentDidMount() {
        /* let daneZalogowanegoKlienta = JSON.parse(localStorage.getItem('daneUzytkownika'));
         if (daneZalogowanegoKlienta) {
@@ -90,7 +91,7 @@ export default class DodawanieWizyty extends Component {
                     </div>
                     <div>
                         <DatePicker
-                            selected={this.state.data}
+                            selected={this.state.date}
                             onChange={this.handleDataChange}
                             showTimeSelect
                         />
@@ -107,6 +108,7 @@ export default class DodawanieWizyty extends Component {
                             placeholder="idKlienta"
                         />
                     </div>
+                    
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Stomatolog:</label>
                         <select class="form-control" value={this.state.idStomatologa} onChange={(e) => this.setState({idStomatologa: e.target.value})}>
