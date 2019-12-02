@@ -32,7 +32,6 @@ export default class PacjentLogowanie extends Component {
             if(pacjent.firstname === this.state.firstname && pacjent.lastname === this.state.lastname)
             {
             localStorage.setItem('id', pacjent.id);
-            console.log(localStorage.getItem('id'));
             
             this.props.onCzyZalogowanyChange(true);
             this.props.history.push('/');

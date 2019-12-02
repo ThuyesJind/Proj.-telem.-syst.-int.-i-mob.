@@ -3,13 +3,11 @@ import React, { Component } from 'react'
 export default class Home extends Component {
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                    <h1>Stomatolog</h1>
+            
+            <div> 
+                    <img width="1940px" src={require('./foto.jpg')} />
                     </div>
-                </div>
-            </div>
+
         )
     }
 }

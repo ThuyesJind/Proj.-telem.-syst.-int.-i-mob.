@@ -48,7 +48,7 @@ export default class App extends Component {
             <div className="container-fluid" id="main-container" >
               <Route exact path ="/pacjent" component={PacjentForm} />
               <Route exact path ="/stomatolog" component={StomatologForm} />
-              <Route exact path ="/" component={Home} />
+              
               <Route exact path ="/pacjentlogowanie" render={
                 (props) => <PacjentLogowanie
                   {...props}
@@ -68,6 +68,7 @@ export default class App extends Component {
               <Route exact path ="/grafik" component={Grafik} />
               <Route exact path ="/grafikpacjent" component={GrafikPacjent} />
             </div>
+            <Route exact path ="/" component={Home} />
           </Router>      
       </div>
     );

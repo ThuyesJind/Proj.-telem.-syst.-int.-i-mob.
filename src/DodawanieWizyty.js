@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default class DodawanieWizyty extends Component {
     state = {
-        date: new Date(),
+        startDate: new Date(),
         idKlienta: "",
         idStomatologa: "",
         idZabiegu: "",
@@ -15,7 +15,11 @@ export default class DodawanieWizyty extends Component {
         zabiegData: []
 
     }
-    
+    handleChange = date => {
+        this.setState({
+          startDate: date
+        });
+      };
     componentDidMount() {
        /* let daneZalogowanegoKlienta = JSON.parse(localStorage.getItem('daneUzytkownika'));
         if (daneZalogowanegoKlienta) {
@@ -41,7 +45,9 @@ export default class DodawanieWizyty extends Component {
                     idZabiegu: ram.data[0].id
                 })
             })
-           
+            this.setState({
+                idKlienta: parseInt(localStorage.getItem('id'))
+            })
     }
     
     handleInputChange = (e) => {
@@ -52,16 +58,22 @@ export default class DodawanieWizyty extends Component {
   
     handleSubmit = (e) => {
         e.preventDefault();
+        let miesiac = parseInt(this.state.startDate.getMonth()) +1
+        let formattedDate = this.state.startDate.getFullYear()  + "-" + miesiac  + "-" + this.state.startDate.getDate() +  " " + this.state.startDate.getHours() + ":" +this.state.startDate.getMinutes();
         let data = {
-            data: this.state.data,
-            idKlienta: this.state.idKlienta,
-            idStomatologa: this.state.idStomatologa,
-            idZabiegu: this.state.idZabiegu,
+            date: formattedDate,
+            dentistId: this.state.idStomatologa,
+            patientId: this.state.idKlienta, 
+            procedureId: this.state.idZabiegu,
+            
+            
         }
+        console.log(data);
         
         axios.post("https://dentalclinic.azurewebsites.net/api/Appointment", data)
             .then((res) => {
             })
+            this.props.history.push('/');
     }
     render() {
         let stomatologOptions = [];
@@ -69,7 +81,7 @@ export default class DodawanieWizyty extends Component {
         
         this.state.stomatologData.forEach ((stomatolog) => {
             stomatologOptions.push(
-                <option value={stomatolog._id}>{stomatolog.firstname +" " + stomatolog.lastname}</option>
+                <option value={parseInt(stomatolog.id)}>{stomatolog.firstname +" " + stomatolog.lastname}</option>
             )
         })
 
@@ -77,7 +89,7 @@ export default class DodawanieWizyty extends Component {
         
         this.state.zabiegData.forEach ((zabieg) => {
             ZabiegOptions.push(
-                <option value={zabieg._id}>{zabieg.name +" " + zabieg.cost + " zł"}</option>
+                <option value={parseInt(zabieg.id)}>{zabieg.name +" " + zabieg.cost + " zł"}</option>
             )
         })
 
@@ -91,22 +103,12 @@ export default class DodawanieWizyty extends Component {
                     </div>
                     <div>
                         <DatePicker
-                            selected={this.state.date}
-                            onChange={this.handleDataChange}
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
                             showTimeSelect
+                            dateFormat="Pp"
                         />
 
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Id Klienta</label>
-                        <input
-                            type="string"
-                            name="idKlienta"
-                            class="form-control"
-                            onChange={this.handleInputChange}
-                            value={this.state.idKlienta}
-                            placeholder="idKlienta"
-                        />
                     </div>
                     
                     <div class="form-group">
