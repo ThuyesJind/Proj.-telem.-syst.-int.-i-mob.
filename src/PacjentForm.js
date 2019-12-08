@@ -5,7 +5,8 @@ export default class KlientForm extends Component {
     state = {
         firstname: "",
         lastname: "",
-        address: ""
+        address: "",
+        password: ""
     }
     handleInputChange = (e) => {
         this.setState({
@@ -17,12 +18,14 @@ export default class KlientForm extends Component {
         let data = { 
             firstname: this.state.firstname,
             lastname: this.state.lastname,
-            address: this.state.address
+            address: this.state.address,
+            password: this.state.password
         }
         axios.post("https://dentalclinic.azurewebsites.net/api/Patient", data)
             .then((res) => {
                 console.log(res);
             })
+            this.props.history.push('/');
     }
     render() {
         return (
@@ -62,7 +65,17 @@ export default class KlientForm extends Component {
                             placeholder="Adres"
                         />
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Hasło</label>
+                        <input
+                            type="string"
+                            name="password"
+                            class="form-control"
+                            onChange={this.handleInputChange}
+                            value={this.state.password}
+                            placeholder="Hasło"
+                        />
+                    </div>
                     <button type="submit" class="btn btn-primary">Stwórz Konto</button>
                 </form>
             </div>

@@ -8,6 +8,7 @@ export default class PacjentLogowanie extends Component {
     state = {
         firstname: "",
         lastname: "",
+        password: "",
         pacjentData: []
     }
   
@@ -29,7 +30,7 @@ export default class PacjentLogowanie extends Component {
         }
     handleSubmit = (e) => {
         this.state.pacjentData.forEach ((pacjent) => {
-            if(pacjent.firstname === this.state.firstname && pacjent.lastname === this.state.lastname)
+            if(pacjent.firstname === this.state.firstname && pacjent.password === this.state.password)
             {
             localStorage.setItem('id', pacjent.id);
             
@@ -61,14 +62,14 @@ export default class PacjentLogowanie extends Component {
                         />
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Nazwisko</label>
+                        <label for="exampleFormControlInput1">Hasło</label>
                         <input
                             type="string"
-                            name="lastname"
+                            name="password"
                             class="form-control"
                             onChange={this.handleInputChange}
-                            value={this.state.lastname}
-                            placeholder="Nazwisko"
+                            value={this.state.password}
+                            placeholder="Hasło"
                         />
                     </div>
                     

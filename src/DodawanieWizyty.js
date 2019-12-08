@@ -62,9 +62,9 @@ export default class DodawanieWizyty extends Component {
         let formattedDate = this.state.startDate.getFullYear()  + "-" + miesiac  + "-" + this.state.startDate.getDate() +  " " + this.state.startDate.getHours() + ":" +this.state.startDate.getMinutes();
         let data = {
             date: formattedDate,
-            dentistId: this.state.idStomatologa,
-            patientId: this.state.idKlienta, 
-            procedureId: this.state.idZabiegu,
+            dentistId: parseInt(this.state.idStomatologa),
+            patientId: parseInt(this.state.idKlienta), 
+            procedureId: parseInt(this.state.idZabiegu),
             
             
         }

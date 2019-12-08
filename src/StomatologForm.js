@@ -5,7 +5,8 @@ export default class StomatologForm extends Component {
     state = {
         firstname: "",
         lastname: "",
-        degree: ""
+        degree: "",
+        password: ""
     }
     handleInputChange = (e) => {
         this.setState({
@@ -17,7 +18,8 @@ export default class StomatologForm extends Component {
         let data = { 
             firstname: this.state.firstname,
             lastname: this.state.lastname,
-            degree: this.state.degree
+            degree: this.state.degree,
+            password: this.state.password
         }
         axios.post("https://dentalclinic.azurewebsites.net/api/Dentist", data)
             .then((res) => {
@@ -60,6 +62,17 @@ export default class StomatologForm extends Component {
                             onChange={this.handleInputChange}
                             value={this.state.degree}
                             placeholder="Stopień Naukowy"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Hasło</label>
+                        <input
+                            type="string"
+                            name="password"
+                            class="form-control"
+                            onChange={this.handleInputChange}
+                            value={this.state.password}
+                            placeholder="Hasło"
                         />
                     </div>
                     

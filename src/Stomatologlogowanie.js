@@ -7,6 +7,7 @@ export default class StomatologLogowanie extends Component {
     state = {
         firstname: "",
         lastname: "",
+        password: "",
         stomatologData: []
     }
   
@@ -29,7 +30,7 @@ export default class StomatologLogowanie extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.state.stomatologData.forEach ((stomatolog) => {
-            if(stomatolog.firstname === this.state.firstname && stomatolog.lastname === this.state.lastname)
+            if(stomatolog.firstname === this.state.firstname && stomatolog.password === this.state.password)
             {
                 this.props.onCzyStomatologChange(true);
                 this.props.onCzyZalogowanyChange(true);
@@ -60,14 +61,14 @@ export default class StomatologLogowanie extends Component {
                         />
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Nazwisko</label>
+                        <label for="exampleFormControlInput1">Hasło</label>
                         <input
                             type="string"
-                            name="lastname"
+                            name="password"
                             class="form-control"
                             onChange={this.handleInputChange}
-                            value={this.state.lastname}
-                            placeholder="Nazwisko"
+                            value={this.state.password}
+                            placeholder="Hasło"
                         />
                     </div>
                     
